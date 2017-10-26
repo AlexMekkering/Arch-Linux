@@ -1,3 +1,4 @@
+# Basic installation
 This page describes how to install a fresh and minimal Arch Linux system on a single drive (SSD or HDD).
 
 Both BIOS and EFI boot configurations are supported, only the boot loader (GRUB) needs some different arguments. (see [BIOS](#bios) and [EFI](#efi))
@@ -7,11 +8,17 @@ Both BIOS and EFI boot configurations are supported, only the boot loader (GRUB)
 
 Both Ext4 and Btrfs root file systems are described, so you can make a choice (I'd recommend Btrfs for its snapshot and volume support, transparent compression and check-summed error detection).
 
-The installation is divided in the following sections:
+## Determine and define the drive to install on
+You can use `lsblk -f` to determine the drive to install to.
+When the drive is determined as i.e. `/dev/sdX` do:
+```bash
+export DRIVE=/dev/sdX
+BOOT=${DRIVE}1
+ROOT=${DRIVE}2
+```
 
-# Partitioning
-
-`gdisk /dev/sdX`
+## Partitioning
+`gdisk $DRIVE`
 
 1. `o`
     1. Y
@@ -29,74 +36,66 @@ The installation is divided in the following sections:
     1. ef02
 1. `w`
 
-# Preparing filesystems
-
-## Format Boot partition
-
+## Preparing filesystems
+### Format Boot partition
 ```
-mkfs.fat -F32 /dev/sdX1
+mkfs.fat -F32 $BOOT
 ```
 
-## Format & Mount Root partition
-### Btrfs
+### Format & Mount Root partition
+#### Btrfs
 ```
-mkfs.btrfs -L OS /dev/sdX2
-mount /dev/sdX2 /mnt
+mkfs.btrfs -L OS $ROOT
+mount $ROOT /mnt
 btrfs subvolume Create /mnt/subvol_root
 umount /mnt
-mount -o noatime,space_cache,compress=lzo,subvol=subvol_root /dev/sdX2 /mnt
-```
-### Ext4
-```
-mkfs.ext4 -L OS /dev/sdX2
-mount -o noatime /dev/sdX2 /mnt
+mount -o noatime,space_cache,compress=lzo,subvol=subvol_root $ROOT /mnt
 ```
 
-## Mount Boot partition
+#### Ext4
+```
+mkfs.ext4 -L OS $ROOT
+mount -o noatime $ROOT /mnt
+```
 
+### Mount Boot partition
 ```
 mkdir /mnt/boot
-mount /dev/sdX1 /mnt/boot
+mount -o noatime $BOOT /mnt/boot
 ```
 
-# Creating minimal environment
-
+## Creating minimal environment
 ```
 pacstrap -c /mnt linux grub sed pacman btrfs-progs efibootmgr
 genfstab -Up /mnt >> /mnt/etc/fstab
 ```
-
 > You can leave the btrfs-progs package when not using btrfs.
+
 > You can leave the efibootmgr package when booting in BIOS mode
 
-# Initialize bootloader configuration in Bootstrap environment
-
-## Bootstrap into target environment
-
+## Initialize bootloader configuration in Bootstrap environment
+### Bootstrap into target environment
 ```
 arch-chroot /mnt
 ```
 
-## Install GRUB bootloader
+### Install GRUB bootloader
+#### BIOS
+`grub-install --recheck $DRIVE`
 
-### BIOS
-
-`grub-install --recheck /dev/sdX`
-
-### EFI
-
+#### EFI
 `grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=grub --recheck`
 
-## Initialize GRUB bootloader configuration
-
+### Initialize GRUB bootloader configuration
 ```
 sed -i 's\GRUB_CMDLINE_LINUX_DEFAULT="\&init=/usr/lib/systemd/systemd \' /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 exit
 ```
 
-## Finalize
-
+### Finalize
 ```
 reboot
 ```
+
+For configuration of installation essentials, please see [Installation Essentials](essentials-installations.md)
