@@ -98,4 +98,4 @@ exit
 reboot
 ```
 
-For configuration of installation essentials, please see [Installation Essentials](essentials-installations.md)
+For configuration of installation essentials, please see [Installation Essentials](essentials-installation.md)
