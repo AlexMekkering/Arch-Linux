@@ -18,8 +18,11 @@ ROOT=${DRIVE}2
 ```
 
 ## Partitioning
-`gdisk $DRIVE`
-
+Call:
+```bash
+gdisk $DRIVE
+```
+... and configure as follows:
 1. `o`
     1. Y
 1. `n`
@@ -81,10 +84,14 @@ arch-chroot /mnt
 
 ### Install GRUB bootloader
 #### BIOS
-`grub-install --recheck $DRIVE`
+```bash
+grub-install --recheck $DRIVE
+```
 
 #### EFI
-`grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=grub --recheck`
+```bash
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=grub --recheck
+```
 
 ### Initialize GRUB bootloader configuration
 ```
