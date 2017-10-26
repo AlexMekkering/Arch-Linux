@@ -48,23 +48,26 @@ mkfs.fat -F32 $BOOT
 ### Format & Mount Root partition
 #### Btrfs
 ```
+OPTIONS=noatime,space_cache,compress=lzo,subvol=subvol_root
 mkfs.btrfs -L OS $ROOT
 mount $ROOT /mnt
 btrfs subvolume Create /mnt/subvol_root
 umount /mnt
-mount -o noatime,space_cache,compress=lzo,subvol=subvol_root $ROOT /mnt
+mount -o $OPTIONS $ROOT /mnt
 ```
 
 #### Ext4
 ```
+OPTIONS=noatime
 mkfs.ext4 -L OS $ROOT
-mount -o noatime $ROOT /mnt
+mount -o $OPTIONS $ROOT /mnt
 ```
 
 ### Mount Boot partition
 ```
+OPTIONS=noatime
 mkdir /mnt/boot
-mount -o noatime $BOOT /mnt/boot
+mount -o $OPTIONS $BOOT /mnt/boot
 ```
 
 ## Creating minimal environment
@@ -90,12 +93,14 @@ grub-install --recheck $DRIVE
 
 #### EFI
 ```bash
-grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=grub --recheck
+grub-install --target=x86_64-efi --efi-directory=/boot\
+ --bootloader-id=grub --recheck
 ```
 
 ### Initialize GRUB bootloader configuration
 ```
-sed -i 's\GRUB_CMDLINE_LINUX_DEFAULT="\&init=/usr/lib/systemd/systemd \' /etc/default/grub
+sed -i 's\GRUB_CMDLINE_LINUX_DEFAULT="\&init=/usr/lib/systemd/systemd \'\
+ /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 exit
 ```
