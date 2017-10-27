@@ -13,6 +13,7 @@ There's already some great [documentation regarding Arch Linux](https://wiki.arc
 * [Basic Installation](installation/basic-installation.md)
 * [Essential configuration](installation/essentials-installation.md)
 * [Recommended supplements](installation/recommended-installation.md)
+* [Possible optimizations](installation/optimizations.md)
 
 ## Maintaining the docs
 
