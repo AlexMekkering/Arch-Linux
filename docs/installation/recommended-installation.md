@@ -37,3 +37,5 @@ passwd <username>
 ## Additional archivers
 [Install](../using-pacman.md#install-a-package) packages [`tar`](https://www.archlinux.org/packages/core/x86_64/tar/), [`gzip`](https://www.archlinux.org/packages/core/x86_64/gzip/), [`bzip2`](https://www.archlinux.org/packages/core/x86_64/bzip2/), [`xz`](https://www.archlinux.org/packages/core/x86_64/xz/) and/or [`lz4`](https://www.archlinux.org/packages/core/x86_64/lz4/).
 > For much higher compression and decompression speed (at the cost of some compression ratio), you could [install](../using-pacman.md#install-a-package) package [`lzop`](https://www.archlinux.org/packages/extra/x86_64/lzop/).
+
+Please also check [some more optimizations for a new installation](optimizations.md)
