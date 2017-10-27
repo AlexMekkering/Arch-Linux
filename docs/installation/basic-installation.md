@@ -1,12 +1,13 @@
 # Basic installation of an x86_64 machine
 This page describes how to install a fresh and minimal Arch Linux system for x86_64 machines on a single drive (SSD or HDD).
 
-Both BIOS and EFI boot configurations are supported, only the boot loader (GRUB) needs some different arguments. (see [BIOS](#bios) and [EFI](#efi))
+Both EFI and BIOS configurations are supported. Only the boot loader (GRUB) needs some different arguments. (see [EFI](#efi) and [BIOS](#bios))
 > You can check in which mode you've booted: If the folder `/sys/firmware/efi` exists, the kernel has booted in EFI mode, else it's booted in BIOS mode.
 
 > You can even install a hybrid EFI/BIOS system (thus bootable in both EFI and BIOS mode) by installing in one mode (i.e. BIOS), then reboot in the other (i.e. EFI) and do the [Install GRUB bootloader](#install-grub-bootloader) part again.
 
-Both Ext4 and Btrfs root file systems are described, so you can make a choice (I'd recommend Btrfs for its snapshot and volume support, transparent compression and check-summed error detection).
+Both Ext4 and Btrfs root file systems are described, so you can make a choice.
+>  On this page, Ext4 is taken as de facto standard for installations but Btrfs could be considered for its snapshot and volume support and transparent compression.
 
 ## Determine and define the drive to install on
 You can use `lsblk -f` to determine the drive to install to.
@@ -46,6 +47,11 @@ mkfs.fat -F32 $BOOT
 ```
 
 ### Format & Mount Root partition
+#### Ext4
+```bash
+mkfs.ext4 -L OS $ROOT
+mount -o noatime $ROOT /mnt
+```
 #### Btrfs
 ```bash
 OPTIONS=noatime,space_cache,compress=lzo,subvol=subvol_root
@@ -56,18 +62,10 @@ umount /mnt
 mount -o $OPTIONS $ROOT /mnt
 ```
 
-#### Ext4
-```bash
-OPTIONS=noatime
-mkfs.ext4 -L OS $ROOT
-mount -o $OPTIONS $ROOT /mnt
-```
-
 ### Mount Boot partition
 ```bash
-OPTIONS=noatime
 mkdir /mnt/boot
-mount -o $OPTIONS $BOOT /mnt/boot
+mount -o noatime $BOOT /mnt/boot
 ```
 
 ## Creating minimal environment
@@ -86,15 +84,14 @@ arch-chroot /mnt
 ```
 
 ### Install GRUB bootloader
-#### BIOS
-```bash
-grub-install --recheck $DRIVE
-```
-
 #### EFI
 ```bash
 grub-install --target=x86_64-efi --efi-directory=/boot\
  --bootloader-id=grub --recheck
+```
+#### BIOS
+```bash
+grub-install --recheck $DRIVE
 ```
 
 ### Initialize GRUB bootloader configuration
