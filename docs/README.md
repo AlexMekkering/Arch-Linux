@@ -15,6 +15,9 @@ There's already some great [documentation regarding Arch Linux](https://wiki.arc
 * [Recommended supplements](installation/recommended-installation.md)
 * [Possible optimizations](installation/optimizations.md)
 
+# Knowledge base
+* [Udev rules](udev-rules.md)
+
 ## Maintaining the docs
 
 Please see [Maintaining GitHub Pages](GitHubPages.md) for more info.
