@@ -6,6 +6,7 @@ This section describes how to define an udev rule that creates a symbolic link t
 Here, two devices are taken as example:
 * A USB smartcard reader
 * A USB to TTL converter
+
 These devices both use the same ftdi driver and are both detected as either `/dev/ttyUSB0` or `/dev/ttyUSB1`.
 The problem with this is that the sequence in which they're detected may differ, so the number they'll actually get may also differ from boot to boot which makes it practically impossible to use them in application configurations.
 
@@ -44,7 +45,7 @@ and the attributes from one single parent device.
     ATTRS{interface}=="USB smartcard server"
 ```
 
-In my case, only `ATTRS{interface` differs between the concerning devices, so that's the unique attribute we're looking for.
+In my case, only `ATTRS{interface}` differs between the concerning devices, so that's the unique attribute we're looking for.
 In addition to this unique attribute, we can take other attributes which are specific for these devices to make the match even more deterministic.
 The attributes which I've chose in this case are `KERNEL`, `SUBSYSTEM` and `DRIVERS`.
 
