@@ -50,7 +50,6 @@ In addition to this unique attribute, we can take other attributes which are spe
 The attributes which I've chose in this case are `KERNEL`, `SUBSYSTEM` and `DRIVERS`.
 
 ### Use the attributes in a udev rule
-In my case, only `ATTRS{interface` differs between the concerning devices, so that's the unique attribute we're looking for.
 To use the found udev attributes in a udev rule, we create a file with extension `.rules` in the `/etc/udev/rules.d` folder.
 In this case, we'll create `/etc/udev/rules.d/99-usb-special.rules` with the following content:
 ```
