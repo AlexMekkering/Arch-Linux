@@ -16,7 +16,9 @@ There's already some great [documentation regarding Arch Linux](https://wiki.arc
 * [Possible optimizations](installation/optimizations.md)
 
 # Knowledge base
+* [Using pacman](using-pacman.md)
 * [Udev rules](udev-rules.md)
+* [Systemd-nspawn containers](systemd-nspawn-containers.md)
 
 ## Maintaining the docs
 
