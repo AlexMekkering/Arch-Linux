@@ -3,7 +3,7 @@ This page describes the setup and use of [systemd-nspawn](http://www.freedesktop
 > Please also see [the info concerning this topic for Arch Linux](https://wiki.archlinux.org/index.php/Systemd-nspawn).
 
 # Prerequisites
-Please [install](../using-pacman.md#install-a-package) package [`arch-install-scripts`](https://www.archlinux.org/packages/extra/any/arch-install-scripts/).
+Please [install](using-pacman.md#install-a-package) package [`arch-install-scripts`](https://www.archlinux.org/packages/extra/any/arch-install-scripts/).
 
 # Use
 
@@ -108,8 +108,8 @@ systemctl enable --now systemd-networkd
 ### from host system
 
 ```bash
-ln -s /usr/lib/systemd/system/systemd-networkd.service \
-$FOLDER/etc/systemd/system/multi-user.target.wants/systemd-networkd.service
+ln -s /usr/lib/systemd/system/systemd-networkd.service\
+ $FOLDER/etc/systemd/system/multi-user.target.wants/systemd-networkd.service
 ```
 
 ### To enable host resolution too
@@ -124,7 +124,7 @@ ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
 #### from host system
 
 ```bash
-ln -s /usr/lib/systemd/system/systemd-resolved.service \
-$FOLDER/etc/systemd/system/multi-user.target.wants/systemd-resolved.service
+ln -s /usr/lib/systemd/system/systemd-resolved.service\
+ $FOLDER/etc/systemd/system/multi-user.target.wants/systemd-resolved.service
 ln -sf /run/systemd/resolve/resolv.conf $FOLDER/etc/resolv.conf
 ```
