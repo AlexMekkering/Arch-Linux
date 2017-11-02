@@ -9,13 +9,23 @@ Both EFI and BIOS configurations are supported. Only the boot loader (GRUB) need
 Both Ext4 and Btrfs root file systems are described, so you can make a choice.
 >  On this page, Ext4 is taken as de facto standard for installations but Btrfs could be considered for its snapshot and volume support and transparent compression.
 
+## Download the most recent iso
+Go to https://www.archlinux.org/download/ and download the most recent iso file
+
+## Write the iso file to a USB stick
+```bash
+dd if=<isofile> of /dev/sda bs=4M
+```
+
+... boot the device from the USB stick
+
 ## Determine and define the drive to install on
 You can use `lsblk -f` to determine the drive to install to.
 When the drive is determined as i.e. `/dev/sdX` do:
 ```bash
-export DRIVE=/dev/sdX
-BOOT=${DRIVE}1
-ROOT=${DRIVE}2
+export DRIVE=/dev/sdX # or i.e. /dev/mmcblk0 for eMMC devices
+BOOT=${DRIVE}1 # or ${DRIVE}p1 for eMMC devices
+ROOT=${DRIVE}2 # or ${DRIVE}p2 for eMMC devices
 ```
 
 ## Partitioning
@@ -39,6 +49,7 @@ gdisk $DRIVE
     1. _default_
     1. ef02
 1. `w`
+    1. Y
 
 ## Preparing filesystems
 ### Format Boot partition
