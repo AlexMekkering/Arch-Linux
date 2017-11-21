@@ -42,20 +42,17 @@ gdisk $DRIVE
     1. Y
 
 ## Preparing filesystems
-### Format Boot partition
-```bash
-mkfs.fat -F32 $BOOT
-```
 
 ### Format & Mount Root partition
 ```bash
 mkfs.ext4 -L ROOT $ROOT
 mount -o noatime $ROOT /mnt
+mkdir /mnt/boot
 ```
 
-### Mount Boot partition
+### Format & Mount Boot partition
 ```bash
-mkdir /mnt/boot
+mkfs.fat -F32 $BOOT
 mount -o noatime $BOOT /mnt/boot
 ```
 
@@ -66,14 +63,17 @@ genfstab -Up /mnt >> /mnt/etc/fstab
 ```
 
 ## Initialize bootloader configuration in Bootstrap environment
-### Bootstrap into target environment
+
+### Install bootloader
 ```bash
 bootctl install /mnt/boot
 ```
 
 ### Initialize bootloader configuration
 ```bash
-cp /usr/share/systemd/bootctl/loader.conf  /mnt/boot/loader/loader.conf
+tee -a /mnt/boot/loader/loader.conf > /dev/null <<EOF
+default        arch
+EOF
 tee -a /mnt/boot/loader/entries/arch.conf > /dev/null <<EOF
 title          Arch Linux
 linux          /vmlinuz-linux
