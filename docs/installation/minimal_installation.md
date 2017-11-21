@@ -61,7 +61,7 @@ mount -o noatime $BOOT /mnt/boot
 
 ## Creating minimal environment
 ```bash
-pacstrap -c /mnt linux pacman
+pacstrap -c /mnt linux pacman sed
 genfstab -Up /mnt >> /mnt/etc/fstab
 ```
 
