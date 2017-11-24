@@ -44,8 +44,6 @@ passwd <username>
 ### Prepare
 ```
 sudo pacman -S --needed base-devel git
-mkdir builds
-cd builds
 ```
 ### Install package-query
 ```
@@ -62,10 +60,10 @@ makepkg -sri
 cd ..
 ```
 Now you can use `yaourt` to update your system, install some packages etc.
+
 ### Cleanup
 ```
-cd ~
-rm -rf builds
+rm -rf package-query yaourt
 ```
 
 Please also check [some more optimizations for a new installation](optimizations.md)
