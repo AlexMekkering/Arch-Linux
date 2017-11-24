@@ -35,7 +35,37 @@ passwd <username>
 [Install](../using-pacman.md#install-a-package) packages [`man-db`](https://www.archlinux.org/packages/core/x86_64/man-db/) and [`man-pages`](https://www.archlinux.org/packages/core/x86_64/man-pages/).
 
 ## Additional archivers
-[Install](../using-pacman.md#install-a-package) packages [`tar`](https://www.archlinux.org/packages/core/x86_64/tar/), [`gzip`](https://www.archlinux.org/packages/core/x86_64/gzip/), [`bzip2`](https://www.archlinux.org/packages/core/x86_64/bzip2/), [`xz`](https://www.archlinux.org/packages/core/x86_64/xz/) and/or [`lz4`](https://www.archlinux.org/packages/core/x86_64/lz4/).
-> For much higher compression and decompression speed (at the cost of some compression ratio), you could [install](../using-pacman.md#install-a-package) package [`lzop`](https://www.archlinux.org/packages/extra/x86_64/lzop/).
+[Install](../using-pacman.md#install-a-package) package [`tar`](https://www.archlinux.org/packages/core/x86_64/tar/).
+> For much higher compression and decompression speed for tar (at the cost of some compression ratio), you could [install](../using-pacman.md#install-a-package) package [`lzop`](https://www.archlinux.org/packages/extra/x86_64/lzop/).
+
+> [`gzip`](https://www.archlinux.org/packages/core/x86_64/gzip/), [`bzip2`](https://www.archlinux.org/packages/core/x86_64/bzip2/), [`xz`](https://www.archlinux.org/packages/core/x86_64/xz/) and [`lz4`](https://www.archlinux.org/packages/core/x86_64/lz4/) are already installed as dependencies of either [`linux`](https://www.archlinux.org/packages/core/x86_64/linux/) or [`pacman`](https://www.archlinux.org/packages/core/x86_64/pacman/).
+
+## Adding AUR package management with yaourt
+### Prepare
+```
+sudo pacman -S --needed base-devel git
+mkdir builds
+cd builds
+```
+### Install package-query
+```
+git clone https://aur.archlinux.org/package-query.git
+cd package-query
+makepkg -sri
+cd ..
+```
+### Install yaourt
+```
+git clone https://aur.archlinux.org/yaourt.git
+cd yaourt
+makepkg -sri
+cd ..
+```
+Now you can use `yaourt` to update your system, install some packages etc.
+### Cleanup
+```
+cd ~
+rm -rf builds
+```
 
 Please also check [some more optimizations for a new installation](optimizations.md)
