@@ -94,7 +94,7 @@ machinectl shell $CONTAINER
 
 ```bash
 systemctl enable machines.target # Only the first time
-systemctl enable --now systemd-nspawn@$CONTAINER
+systemctl enable systemd-nspawn@$CONTAINER
 ```
 
 ## Initialize container's host0 network settings
@@ -118,7 +118,7 @@ ln -s /usr/lib/systemd/system/systemd-networkd.service\
 
 ```bash
 systemctl enable --now systemd-resolved
-ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
+ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 ```
 
 #### from host system
@@ -126,5 +126,26 @@ ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
 ```bash
 ln -s /usr/lib/systemd/system/systemd-resolved.service\
  $FOLDER/etc/systemd/system/multi-user.target.wants/systemd-resolved.service
-ln -sf /run/systemd/resolve/resolv.conf $FOLDER/etc/resolv.conf
+ln -sf /run/systemd/resolve/stub-resolv.conf $FOLDER/etc/resolv.conf
 ```
+
+# Priviledged & Unpriviledged containers
+Since kernel 4.14, systemd-nspawn containers will be unpriviledged by default (`PrivateUsers=pick`) which means that those may not have the right permissions to fulfill the functions for which they're created. In addition, the owner of all files/directories within the root folder of the container (in `/var/lib/machines/`) is recursively shifted to the automatically created unpriviledged user namespace.
+
+## Configuration of a priviledged container
+To create a priviledged container, add `PrivateUsers=false` to the `[Exec]` section of the respective `.nspawn` file like:
+```
+[Exec]
+PrivateUsers=false
+```
+
+## Reverting a shift of ownership for unpriviledged containers
+To revert a shift to the automatically created unpriviledged user namespace back to the user namespace of the host (starting at `0` for root):
+1. stop the container
+2. make sure that the `.nspawn` doesn't contain `PrivateUsers=false`
+3. execute the following:
+   ```
+   systemd-nspawn --quiet --boot --link-journal=try-guest --network-veth -U --settings=override --private-users=0 --private-users-chown --machine=$CONTAINER
+   ```
+
+To make the container priviledged again, enable the `PrivateUsers=false` again in the `.nspawn` file and start the container.
