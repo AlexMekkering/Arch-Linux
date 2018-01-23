@@ -129,18 +129,18 @@ ln -s /usr/lib/systemd/system/systemd-resolved.service\
 ln -sf /run/systemd/resolve/stub-resolv.conf $FOLDER/etc/resolv.conf
 ```
 
-# Priviledged & Unpriviledged containers
-Since kernel 4.14, systemd-nspawn containers will be unpriviledged by default (`PrivateUsers=pick`) which means that those may not have the right permissions to fulfill the functions for which they're created. In addition, the owner of all files/directories within the root folder of the container (in `/var/lib/machines/`) is recursively shifted to the automatically created unpriviledged user namespace.
+# Privileged & Unprivileged containers
+Since kernel 4.14, systemd-nspawn containers will be unprivileged by default (`PrivateUsers=pick`) which means that those may not have the right permissions to fulfill the functions for which they're created. In addition, the owner of all files/directories within the root folder of the container (in `/var/lib/machines/`) is recursively shifted to the automatically created unprivileged user namespace.
 
-## Configuration of a priviledged container
-To create a priviledged container, add `PrivateUsers=false` to the `[Exec]` section of the respective `.nspawn` file like:
+## Configuration of a privileged container
+To create a privileged container, add `PrivateUsers=false` to the `[Exec]` section of the respective `.nspawn` file like:
 ```
 [Exec]
 PrivateUsers=false
 ```
 
-## Reverting a shift of ownership for unpriviledged containers
-To revert a shift to the automatically created unpriviledged user namespace back to the user namespace of the host (starting at `0` for root):
+## Reverting a shift of ownership for unprivileged containers
+To revert a shift to the automatically created unprivileged user namespace back to the user namespace of the host (starting at `0` for root):
 1. stop the container
 2. make sure that the `.nspawn` doesn't contain `PrivateUsers=false`
 3. execute the following:
@@ -148,4 +148,4 @@ To revert a shift to the automatically created unpriviledged user namespace back
    systemd-nspawn --quiet --boot --link-journal=try-guest --network-veth -U --settings=override --private-users=0 --private-users-chown --machine=$CONTAINER
    ```
 
-To make the container priviledged again, enable the `PrivateUsers=false` again in the `.nspawn` file and start the container.
+To make the container privileged again, enable the `PrivateUsers=false` again in the `.nspawn` file and start the container.
