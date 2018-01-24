@@ -35,10 +35,15 @@ EOF
 # Tune for more filesystem caching with faster expiration for file servers
 ```bash
 tee -a /etc/sysctl.d/99-sysctl.conf > /dev/null <<EOF
-vm.dirty_background_bytes = 134217728 # 128 MB of data before starting asynchronous writes
-vm.dirty_ratio = 50 # use a maximum of 50% of RAM for caching before starting synchronous writes
-vm.dirty_expire_centisecs = 1500 # expire after 15 seconds
-vm.dirty_writeback_centisecs = 1500 # check expiration every 15 seconds
-kernel.nmi_watchdog = 0 # disable nmi wactchdog (not really fs related)
+# 128 MB of data before starting asynchronous writes
+vm.dirty_background_bytes = 134217728
+# use a maximum of 50% of RAM for caching before starting synchronous writes
+vm.dirty_ratio = 50
+# expire after 15 seconds
+vm.dirty_expire_centisecs = 1500
+# check expiration every 15 seconds
+vm.dirty_writeback_centisecs = 1500
+# disable nmi wactchdog (not really fs related)
+kernel.nmi_watchdog = 0
 EOF
 ```
