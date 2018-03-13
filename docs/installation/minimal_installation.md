@@ -1,5 +1,6 @@
-# Basic installation of an x86_64 machine
+# Minimal basic installation of an x86_64 machine
 This page describes how to install a fresh and minimal Arch Linux system for x86_64 machines on a single drive (SSD or HDD).
+> This installation method has the least amount of dependencies by using systemd-boot as UEFI boot manager and ext4 as file system for the root partition.
 
 Only an EFI configuration is supported.
 > You can check in which mode you've booted: If the folder `/sys/firmware/efi` exists, the kernel has booted in EFI mode, else it's booted in BIOS mode.
