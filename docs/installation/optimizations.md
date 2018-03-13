@@ -27,14 +27,14 @@ EOF
 
 # deadline IO scheduler for non-rotational disks
 ```bash
-tee -a /etc/udev/rules.d/60-ssd-scheduler.rules > /dev/null <<EOF
+sudo tee -a /etc/udev/rules.d/60-ssd-scheduler.rules > /dev/null <<EOF
 ACTION=="add|change", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="deadline"
 EOF
 ```
 
 # Tune for more filesystem caching with faster expiration for file servers
 ```bash
-tee -a /etc/sysctl.d/99-sysctl.conf > /dev/null <<EOF
+sudo tee -a /etc/sysctl.d/99-sysctl.conf > /dev/null <<EOF
 # 128 MB of data before starting asynchronous writes
 vm.dirty_background_bytes = 134217728
 # use a maximum of 50% of RAM for caching before starting synchronous writes
