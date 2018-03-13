@@ -11,6 +11,7 @@ There's already some great [documentation regarding Arch Linux](https://wiki.arc
 
 # Installation
 * [Basic Installation](installation/basic-installation.md)
+  * **...or** [Minial Installation using systemd-boot](installation/minimal_installation.md)
 * [Essential configuration](installation/essentials-installation.md)
 * [Recommended supplements](installation/recommended-installation.md)
 * [Possible optimizations](installation/optimizations.md)
