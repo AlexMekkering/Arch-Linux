@@ -6,11 +6,13 @@ Only an EFI configuration is supported.
 > You can check in which mode you've booted: If the folder `/sys/firmware/efi` exists, the kernel has booted in EFI mode, else it's booted in BIOS mode.
 
 ## Download the most recent iso
-Go to https://www.archlinux.org/download/ and download the most recent iso file
+Go to <https://www.archlinux.org/download/> and download the most recent iso file
 
 ## Write the iso file to a USB stick
+You can use `lsblk -f` to determine the drive to write the iso file to.
+When the drive is determined as i.e. `/dev/sdX` do:
 ```bash
-dd if=<isofile> of /dev/sda bs=4M
+dd if=<isofile> of=/dev/sdX bs=4M
 ```
 
 ... boot the device from the USB stick
