@@ -1,4 +1,3 @@
-# Welcome
 ![Arch Linux](https://www.archlinux.org/static/logos/archlinux-logo-dark-scalable.518881f04ca9.svg)
 
 This page is the starting point for all installation and configuration documentation of my [Arch Linux](https://www.archlinux.org/) setup.
@@ -11,7 +10,7 @@ There's already some great [documentation regarding Arch Linux](https://wiki.arc
 
 # Installation
 * [Basic Installation](installation/basic-installation.md)
-  * **...or** [Minial Installation using systemd-boot](installation/minimal_installation.md)
+  * **...or** [Minimal Installation using systemd-boot](installation/minimal_installation.md)
 * [Essential configuration](installation/essentials-installation.md)
 * [Recommended supplements](installation/recommended-installation.md)
 * [Possible optimizations](installation/optimizations.md)
