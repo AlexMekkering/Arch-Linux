@@ -50,7 +50,7 @@ In which the options are chosen as follows (please also see [rsync's man pages](
 | --info=name | show name of changed files |
 | --info=remove | show name of removed files |
 | --info=stats | show statistics |
-| --bwlimit | limit transfer to *n* kB/s (81920 == 80MiB) |
+| --bwlimit=*n* | limit transfer to *n* kB/s (81920 == 80MiB) |
 | --delete | delete removed files from target |
 
 ## Prioritizing the synchronization process
