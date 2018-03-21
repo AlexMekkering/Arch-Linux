@@ -21,6 +21,7 @@ There's already some great [documentation regarding Arch Linux](https://wiki.arc
 * [Udev rules](udev-rules.md)
 * [Polkit](polkit.md)
 * [Systemd-nspawn containers](systemd-nspawn-containers.md)
+* [Using rsync](using-rsync.md)
 
 ## Maintaining the docs
 
