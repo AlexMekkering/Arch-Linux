@@ -2,7 +2,7 @@
 This page describes how `rsync` can be used to synchronize folders between different locations. The [Arch Linux wiki](https://wiki.archlinux.org/index.php/Rsync) already contains some great info on that so please read that too.
 
 ## Installation
-[Install](../using-pacman.md#install-a-package) package [`rsync`](https://www.archlinux.org/packages/extra/x86_64/rsync/)
+[Install](using-pacman.md#install-a-package) package [`rsync`](https://www.archlinux.org/packages/extra/x86_64/rsync/)
 
 > To be able to use the rsync protocol by running a server-side daemon, `rsync` should be installed on both client and server
 
@@ -52,3 +52,10 @@ In which the options are chosen as follows (please also see [rsync's man pages](
 | --info=stats | show statistics |
 | --bwlimit | limit transfer to *n* kB/s (81920 == 80MiB) |
 | --delete | delete removed files from target |
+
+## Prioritizing the synchronization process
+To prioritize the synchronization process `nice` and `ionice` can be used.
+E.g. when the synchronization process shouldn't impact other process's performance and IO, use the following command:
+```bash
+nice -n19 ionice -c2 -n7 rsync ...
+```
