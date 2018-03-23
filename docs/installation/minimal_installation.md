@@ -74,10 +74,10 @@ bootctl install --path=/mnt/boot
 
 ### Initialize bootloader configuration
 ```bash
-tee -a /mnt/boot/loader/loader.conf > /dev/null <<EOF
+tee /mnt/boot/loader/loader.conf > /dev/null <<EOF
 default        arch
 EOF
-tee -a /mnt/boot/loader/entries/arch.conf > /dev/null <<EOF
+tee /mnt/boot/loader/entries/arch.conf > /dev/null <<EOF
 title          Arch Linux
 linux          /vmlinuz-linux
 initrd         /initramfs-linux.img
