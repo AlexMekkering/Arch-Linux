@@ -69,7 +69,7 @@ genfstab -Up /mnt >> /mnt/etc/fstab
 
 ### Install bootloader
 ```bash
-bootctl install /mnt/boot
+bootctl install --path=/mnt/boot
 ```
 
 ### Initialize bootloader configuration
