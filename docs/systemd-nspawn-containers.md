@@ -149,3 +149,19 @@ To revert a shift to the automatically created unprivileged user namespace back 
    ```
 
 To make the container privileged again, enable the `PrivateUsers=false` again in the `.nspawn` file and start the container.
+
+# Updating a container's packages
+A container's packages can be updated by calling the following from the host:
+``` bash
+pacman -Syur /var/lib/machines/<container>
+```
+
+## Updating a container's keyring
+
+> Running the command above will sometimes fail with the following in which case you'll need to update the keyring locally:
+  `==> ERROR: DDB867B92AA789C165EEFA799B729B06A680C281 could not be locally signed.`
+
+A container's keyring can be updated by:
+```bash
+sudo machinectl shell <container> /usr/bin/pacman-key --populate archlinux
+```
