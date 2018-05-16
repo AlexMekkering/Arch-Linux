@@ -21,11 +21,12 @@ systemctl enable --now systemd-networkd
 ```
 > This assumes that the names of network devices comply with pattern `e*` which supports [predictable network interface names](https://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/) like i.e. `eno1`, `ens1` and `enp2s0` as well as   unpredictable kernel-native ethX names like `eth0`.
 
-### Enable Name Resolution
+### Enable Hostname Resolution
 ```bash
 systemctl enable --now systemd-resolved
 ln -sf /usr/lib/systemd/resolv.conf /etc/resolv.conf
 ```
+> According to https://wiki.archlinux.org/index.php/systemd-networkd#systemd-resolve_not_searching_the_local_domain, systemd-resolve may fail to resolve local domain names in which case `[!UNAVAIL=return]` should be removed from `/etc/nsswitch.conf`'s `hosts:` line.
 
 ## Time
 ```bash
