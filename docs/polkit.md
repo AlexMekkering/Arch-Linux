@@ -1,5 +1,5 @@
 # Polkit
-This page contains some info of using and configuring [Polkit](https://www.freedesktop.org/wiki/Software/polkit/).
+This page contains some info of using and configuring [Polkit].
 
 ## Granting permission for powering off to a regular user
 Granting permission for powering off to a regular user can be accomplish as follows by using Polkit:
@@ -17,3 +17,5 @@ Granting permission for powering off to a regular user can be accomplish as foll
       }
    });
    ```
+
+[Polkit]: https://www.freedesktop.org/wiki/Software/polkit/

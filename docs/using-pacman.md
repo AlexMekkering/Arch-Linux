@@ -9,7 +9,7 @@ i.e. with the following command, an unprivileged user will install package `grep
 ```bash
 sudo pacman -Syu grep
 ```
-> **Always** do a full upgrade (`pacman -Syu`) when installing packages. Arch Linux **doesn't support** [partial upgrades](https://wiki.archlinux.org/index.php/System_maintenance#Partial_upgrades_are_unsupported).
+> **Always** do a full upgrade (`pacman -Syu`) when installing packages. Arch Linux **doesn't support** [partial upgrades].
 
 ## Alias to update and purge
 To update everything, including systemd-nspawn containers in `/var/lib/machines`, and purge the pacman cache afterwards, you could create an alias `update` as normal user as follows:
@@ -18,3 +18,5 @@ tee -a ~/.bashrc > /dev/null <<EOF
 alias update='sudo pacman -Syu; sudo sh -c "for d in /var/lib/machines/*/; do echo \$d; pacman -Syur \$d; done"; paccache -vrk 2'
 EOF
 ```
+
+[partial upgrades]: https://wiki.archlinux.org/index.php/System_maintenance#Partial_upgrades_are_unsupported

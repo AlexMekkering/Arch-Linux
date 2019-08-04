@@ -1,5 +1,25 @@
 # Essential configuration for new installations
-This page describes some essential configuration to get a [new installation](../README.md) ready for basic use with support for networking.
+This page describes some essential configuration to get a [new installation] ready for basic use with support for networking.
+
+## Time
+```bash
+timedatectl set-timezone Europe/Amsterdam
+timedatectl set-ntp yes
+```
+
+## Locale
+```bash
+tee -a /etc/locale.gen > /dev/null <<EOF
+en_US.UTF-8 UTF-8
+en_US ISO-8859-1
+nl_NL.UTF-8 UTF-8
+nl_NL ISO-8859-1
+nl_NL@euro ISO-8859-15
+EOF
+
+locale-gen
+localectl set-locale LANG=en_US.UTF-8
+```
 
 ## Networking
 ### Set the hostname
@@ -19,7 +39,7 @@ EOF
 
 systemctl enable --now systemd-networkd
 ```
-> This assumes that the names of network devices comply with pattern `e*` which supports [predictable network interface names](https://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/) like i.e. `eno1`, `ens1` and `enp2s0` as well as   unpredictable kernel-native ethX names like `eth0`.
+> This assumes that the names of network devices comply with pattern `e*` which supports [predictable network interface names] like i.e. `eno1`, `ens1` and `enp2s0` as well as unpredictable kernel-native ethX names like `eth0`.
 
 ### Enable Hostname Resolution
 ```bash
@@ -59,24 +79,8 @@ DNSSEC=no
 EOF
 ```
 
-## Time
-```bash
-timedatectl set-timezone Europe/Amsterdam
-timedatectl set-ntp yes
-```
+Please check my [recommended supplements] to get a more functional system.
 
-## Locale
-```bash
-tee -a /etc/locale.gen > /dev/null <<EOF
-en_US.UTF-8 UTF-8
-en_US ISO-8859-1
-nl_NL.UTF-8 UTF-8
-nl_NL ISO-8859-1
-nl_NL@euro ISO-8859-15
-EOF
-
-locale-gen
-localectl set-locale LANG=en_US.UTF-8
-```
-
-Please check my [recommended supplements](recommended-installation.md) to get a more functional system.
+[new installation]: ../README.md
+[predictable network interface names]: https://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/
+[recommended supplements]: recommended-installation.md

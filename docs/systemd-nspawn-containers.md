@@ -1,9 +1,9 @@
 # Systemd-nspawn containers
-This page describes the setup and use of [systemd-nspawn](http://www.freedesktop.org/software/systemd/man/systemd-nspawn.html) containers.
-> Please also see [the info concerning this topic for Arch Linux](https://wiki.archlinux.org/index.php/Systemd-nspawn).
+This page describes the setup and use of [systemd-nspawn] containers.
+> Please also see [the info concerning this topic for Arch Linux].
 
 # Prerequisites
-Please [install](using-pacman.md#install-a-package) package [`arch-install-scripts`](https://www.archlinux.org/packages/extra/any/arch-install-scripts/).
+Please [install] package [`arch-install-scripts`].
 
 # Use
 
@@ -165,3 +165,8 @@ A container's keyring can be updated by:
 ```bash
 sudo machinectl shell <container> /usr/bin/pacman-key --populate archlinux
 ```
+
+[install]: using-pacman.md#install-a-package
+[systemd-nspawn]: http://www.freedesktop.org/software/systemd/man/systemd-nspawn.html
+[the info concerning this topic for Arch Linux]: https://wiki.archlinux.org/index.php/Systemd-nspawn
+[`arch-install-scripts`]: https://www.archlinux.org/packages/extra/any/arch-install-scripts/

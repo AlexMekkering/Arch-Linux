@@ -1,21 +1,21 @@
 # Recommended supplements for new installations
-This page describes some supplementary but strongly recommended packages and their configuration for [new installations](../README.md).
-It is assumed that all of the [necessary essential configuration](essentials-installation.md) has been done.
-> To reduce dependencies, the main recommended packages on this page are all part of the [`core`](https://www.archlinux.org/packages/?repo=Core) repository. In some cases additional notes have been added which refer to possibly useful packages in either the [`extra`](https://www.archlinux.org/packages/?repo=Extra) or the [`community`](https://www.archlinux.org/packages/?repo=Community) repository.
+This page describes some supplementary but strongly recommended packages and their configuration for [new installations].
+It is assumed that all of the [necessary essential configuration] has been done.
+> To reduce dependencies, the main recommended packages on this page are all part of the [`core`] repository. In some cases additional notes have been added which refer to possibly useful packages in either the [`extra`] or the [`community`] repository.
 
 ## Command line editor
-[Install](../using-pacman.md#install-a-package) package [`vi`](https://www.archlinux.org/packages/core/x86_64/vi/).
+[Install] package [`vi`].
 
-> Additionally, to have a more intuitive kind of editor, you could [install](../using-pacman.md#install-a-package) package [`nano`](https://www.archlinux.org/packages/core/x86_64/nano/).
+> Additionally, to have a more intuitive kind of editor, you could [Install] package [`nano`].
 
-> For an extended vi editor, you could [install](../using-pacman.md#install-a-package) package [`gvim`](https://www.archlinux.org/packages/extra/x86_64/gvim/) or [`vim`](https://www.archlinux.org/packages/extra/x86_64/vim/) (see https://wiki.archlinux.org/index.php/Vim).
+> For an extended vi editor, you could [Install] package [`gvim`] or [`vim`] (see https://wiki.archlinux.org/index.php/Vim).
 
 ## Add an administrative user
 ### Install prerequisites
 As user `root`:
-* [Install](../using-pacman.md#install-a-package) package [`sudo`](https://www.archlinux.org/packages/core/x86_64/sudo/)
+* [Install] package [`sudo`]
 * Call `visudo` and remove the `# ` of rule `# %wheel ALL=(ALL) ALL`.
-  > Package [`vi`](https://www.archlinux.org/packages/core/x86_64/vi/) is required for this to work (see the previous [Command line editor](#command-line-editor) section)
+  > Package [`vi`] is required for this to work (see the previous [Command line editor] section)
 
 ### Add the user
 ```bash
@@ -24,21 +24,21 @@ passwd <username>
 ```
 
 ## Utilities for monitoring your system
-[Install](../using-pacman.md#install-a-package) package [`procps-ng`](https://www.archlinux.org/packages/core/x86_64/procps-ng/) which includes `ps`, `top` and `uptime`.
+[Install] package [`procps-ng`] which includes `ps`, `top` and `uptime`.
 
-> For extended system and performance monitoring, you could [install](../using-pacman.md#install-a-package) package [`htop`](https://www.archlinux.org/packages/extra/x86_64/htop/) and/or [`sysstat`](https://www.archlinux.org/packages/community/x86_64/sysstat/).
+> For extended system and performance monitoring, you could [Install] package [`htop`] and/or [`sysstat`].
 
 ## Additional network tools
-[Install](../using-pacman.md#install-a-package) package [`iputils`](https://www.archlinux.org/packages/core/x86_64/iputils/) which includes i.e. `ping`.
+[Install] package [`iputils`] which includes i.e. `ping`.
 
 ## Reading manual pages
-[Install](../using-pacman.md#install-a-package) packages [`man-db`](https://www.archlinux.org/packages/core/x86_64/man-db/) and [`man-pages`](https://www.archlinux.org/packages/core/x86_64/man-pages/).
+[Install] packages [`man-db`] and [`man-pages`].
 
 ## Additional archivers
-[Install](../using-pacman.md#install-a-package) package [`tar`](https://www.archlinux.org/packages/core/x86_64/tar/).
-> For much higher compression and decompression speed for tar (at the cost of some compression ratio), you could [install](../using-pacman.md#install-a-package) package [`lzop`](https://www.archlinux.org/packages/extra/x86_64/lzop/).
+[Install] package [`tar`].
+> For much higher compression and decompression speed for tar (at the cost of some compression ratio), you could [Install] package [`lzop`].
 
-> [`gzip`](https://www.archlinux.org/packages/core/x86_64/gzip/), [`bzip2`](https://www.archlinux.org/packages/core/x86_64/bzip2/), [`xz`](https://www.archlinux.org/packages/core/x86_64/xz/) and [`lz4`](https://www.archlinux.org/packages/core/x86_64/lz4/) are already installed as dependencies of either [`linux`](https://www.archlinux.org/packages/core/x86_64/linux/) or [`pacman`](https://www.archlinux.org/packages/core/x86_64/pacman/).
+> [`gzip`], [`bzip2`], [`xz`] and [`lz4`] are already installed as dependencies of either [`linux`] or [`pacman`].
 
 ## Adding AUR package management with yaourt
 ### Prepare
@@ -66,4 +66,36 @@ Now you can use `yaourt` to update your system, install some packages etc.
 rm -rf package-query yaourt
 ```
 
-Please also check [some more optimizations for a new installation](optimizations.md)
+Please also check [some more optimizations for a new installation].
+
+[new installations]: ../README.md
+[necessary essential configuration]: essentials-installation.md
+[Install]: ../using-pacman.md#install-a-package
+[Command line editor]: #command-line-editor
+[some more optimizations for a new installation]: optimizations.md
+
+[`core`]: https://www.archlinux.org/packages/?repo=Core
+[`extra`]: https://www.archlinux.org/packages/?repo=Extra
+[`community`]: https://www.archlinux.org/packages/?repo=Community
+
+[`linux`]: https://www.archlinux.org/packages/core/x86_64/linux/
+[`pacman`]: https://www.archlinux.org/packages/core/x86_64/pacman/
+[`vi`]: https://www.archlinux.org/packages/core/x86_64/vi/
+[`nano`]: https://www.archlinux.org/packages/core/x86_64/nano/
+[`sudo`]: https://www.archlinux.org/packages/core/x86_64/sudo/
+[`procps-ng`]: https://www.archlinux.org/packages/core/x86_64/procps-ng/
+[`iputils`]: https://www.archlinux.org/packages/core/x86_64/iputils/
+[`man-db`]: https://www.archlinux.org/packages/core/x86_64/man-db/
+[`man-pages`]: https://www.archlinux.org/packages/core/x86_64/man-pages/
+[`tar`]: https://www.archlinux.org/packages/core/x86_64/tar/
+[`gzip`]: https://www.archlinux.org/packages/core/x86_64/gzip/
+[`bzip2`]: https://www.archlinux.org/packages/core/x86_64/bzip2/
+[`xz`]: https://www.archlinux.org/packages/core/x86_64/xz/
+[`lz4`]: https://www.archlinux.org/packages/core/x86_64/lz4/
+
+[`htop`]: https://www.archlinux.org/packages/extra/x86_64/htop/
+[`gvim`]: https://www.archlinux.org/packages/extra/x86_64/gvim/
+[`vim`]: https://www.archlinux.org/packages/extra/x86_64/vim/
+[`lzop`]: https://www.archlinux.org/packages/extra/x86_64/lzop/
+
+[`sysstat`]: https://www.archlinux.org/packages/community/x86_64/sysstat/

@@ -1,8 +1,8 @@
 # Using rsync
-This page describes how `rsync` can be used to synchronize folders between different locations. The [Arch Linux wiki](https://wiki.archlinux.org/index.php/Rsync) already contains some great info on that so please read that too.
+This page describes how `rsync` can be used to synchronize folders between different locations. The [Arch Linux wiki] already contains some great info on that so please read that too.
 
 ## Installation
-[Install](using-pacman.md#install-a-package) package [`rsync`](https://www.archlinux.org/packages/extra/x86_64/rsync/)
+[Install] package [`rsync`]
 
 > To be able to use the rsync protocol by running a server-side daemon, `rsync` should be installed on both client and server
 
@@ -38,7 +38,7 @@ To synchronize some source folders with an rsync daemon's target, use the follow
 rsync -ahW --info=progress2,flist0,name,remove,stats --bwlimit=81920 --delete <folder1> [<folder2> [<folder3> [...]]] server::storage
 ```
 
-In which the options are chosen as follows (please also see [rsync's man pages](https://linux.die.net/man/1/rsync):
+In which the options are chosen as follows (please also see [rsync's man pages]):
 
 | option | purpose |
 | --- | --- |
@@ -59,3 +59,8 @@ E.g. when the synchronization process shouldn't impact other process's performan
 ```bash
 nice -n19 ionice -c2 -n7 rsync ...
 ```
+
+[Install]: ../using-pacman.md#install-a-package
+[Arch Linux wiki]: https://wiki.archlinux.org/index.php/Rsync
+[`rsync`]: https://www.archlinux.org/packages/extra/x86_64/rsync/
+[rsync's man pages]: https://linux.die.net/man/1/rsync
