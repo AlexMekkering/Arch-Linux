@@ -16,9 +16,9 @@ The secuence is to:
 * Use those attributes in a udev rule
 
 ### Determine the unique udev attributes of a device
-The udev attributes of any device in the `/dev/` folder can be determined by `udevadmin info -a /dev/<device>`, so for i.e. `/dev/ttyUSB0` this will be:
+The udev attributes of any device in the `/dev/` folder can be determined by `udevadm info -a /dev/<device>`, so for i.e. `/dev/ttyUSB0` this will be:
 ```bash
-udevadmin info -a /dev/ttyUSB0
+udevadm info -a /dev/ttyUSB0
 ```
 This will give something like:
 ```
