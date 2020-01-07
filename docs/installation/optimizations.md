@@ -16,7 +16,7 @@ EOF
 
 # Fill ATTR{disksize} with about 150% of physically available RAM for doubling RAM or 75% for i.e. file servers
 sudo tee -a /etc/udev/rules.d/99-zram.rules > /dev/null <<EOF
-KERNEL=="zram0", ATTR{initstate}=="0", ATTR{max_comp_streams}="4", ATTR{comp_algorithm}="lz4", ATTR{disksize}="1536M", RUN="/usr/bin/mkswap /dev/zram0", TAG+="systemd"
+KERNEL=="zram0", ATTR{initstate}=="0", ATTR{comp_algorithm}="lz4", ATTR{disksize}="3G", RUN="/sbin/mkswap $env{DEVNAME}", TAG+="systemd"
 EOF
 
 sudo tee -a /etc/fstab > /dev/null <<EOF
