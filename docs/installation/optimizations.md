@@ -10,12 +10,12 @@ This section adds a ZRam swap device to:
 
 The configuration for this is done as follows:
 ```bash
-sudo tee -a /etc/modules-load.d/zram.conf > /dev/null <<EOF
+sudo tee /etc/modules-load.d/zram.conf > /dev/null <<EOF
 zram
 EOF
 
 # Fill ATTR{disksize} with about 150% of physically available RAM for doubling RAM or 75% for i.e. file servers
-sudo tee -a /etc/udev/rules.d/99-zram.rules > /dev/null <<EOF
+sudo tee /etc/udev/rules.d/99-zram.rules > /dev/null <<'EOF'
 KERNEL=="zram0", ATTR{initstate}=="0", ATTR{comp_algorithm}="lz4", ATTR{disksize}="3G", RUN="/sbin/mkswap $env{DEVNAME}", TAG+="systemd"
 EOF
 
@@ -27,7 +27,7 @@ EOF
 
 # deadline IO scheduler for non-rotational disks
 ```bash
-sudo tee -a /etc/udev/rules.d/60-ssd-scheduler.rules > /dev/null <<EOF
+sudo tee /etc/udev/rules.d/60-ssd-scheduler.rules > /dev/null <<EOF
 ACTION=="add|change", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="deadline"
 EOF
 ```
