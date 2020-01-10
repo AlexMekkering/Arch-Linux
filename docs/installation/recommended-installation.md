@@ -14,8 +14,13 @@ It is assumed that all of the [necessary essential configuration] has been done.
 ### Install prerequisites
 As user `root`:
 * [Install] package [`sudo`]
-* Call `visudo` and remove the `# ` of rule `# %wheel ALL=(ALL) ALL`.
-  > Package [`vi`] is required for this to work (see the previous [Command line editor] section)
+* Execute:
+  ```bash
+  tee /etc/sudoers.d/wheel <<EOF
+  %wheel ALL=(ALL) ALL
+  EOF
+  chmod 440 /etc/sudoers.d/wheel
+  ```
 
 ### Add the user
 ```bash
