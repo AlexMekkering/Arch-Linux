@@ -1,14 +1,18 @@
 # Optimizations for a new installation
+
 This page describes some optimizations for a [new installation](basic-installation.md).
 All commands are assumed to be executed by an [unprivileged user](recommended-installation.md#add-an-administrative-user).
 
-# ZRam swap device at boot
+## ZRam swap device at boot
+
 This section adds a ZRam swap device to:
+
 * extend the available amount of memory
 * improve responsiveness because it's much quicker than swapping to a hard drive
 * reduce disk read/write cycles on SSDs
 
 The configuration for this is done as follows:
+
 ```bash
 sudo tee /etc/modules-load.d/zram.conf > /dev/null <<EOF
 zram
@@ -25,14 +29,16 @@ sudo tee -a /etc/fstab > /dev/null <<EOF
 EOF
 ```
 
-# deadline IO scheduler for non-rotational disks
+## deadline IO scheduler for non-rotational disks
+
 ```bash
 sudo tee /etc/udev/rules.d/60-ssd-scheduler.rules > /dev/null <<EOF
 ACTION=="add|change", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="deadline"
 EOF
 ```
 
-# Tune for more filesystem caching with faster expiration for file servers
+## Tune for more filesystem caching with faster expiration for file servers
+
 ```bash
 sudo tee -a /etc/sysctl.d/99-sysctl.conf > /dev/null <<EOF
 # 128 MB of data before starting asynchronous writes

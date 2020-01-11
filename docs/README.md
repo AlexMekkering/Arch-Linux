@@ -1,28 +1,33 @@
+# Arch Linux
+
 ![Arch Linux](https://www.archlinux.org/static/logos/archlinux-logo-dark-scalable.518881f04ca9.svg)
 
 This page is the starting point for all installation and configuration documentation of my [Arch Linux] setup.
 There's already some great [documentation regarding Arch Linux], so please consult that for background information. My focus will be on the bare minimum of necessities to achieve a specific goal and therefor:
+
 * The number of explicitly installed packages will be kept to a minimum
 * For filling configuration files, the command `tee` is used instead of a command line editor (like [`vi`] or [`nano`]), mostly because:
   * it's part of package [`coreutils`] which is already pulled in by mandatory top level packages like [`linux`] and [`systemd`]
   * to execute the command using `tee`, it can be copied on the command line or in scripts
   * the part of the command between the `EOF` tags can still be copied into an editor to your taste
 
-# Installation
+## Installation
+
 * [Basic Installation]
   * **...or** [Minimal Installation using systemd-boot]
 * [Essential configuration]
 * [Recommended supplements]
 * [Possible optimizations]
 
-# Knowledge base
+## Knowledge base
+
 * [Using pacman]
 * [Udev rules]
 * [Polkit]
 * [Systemd-nspawn containers]
 * [Using rsync]
 
-## Maintaining the docs
+### Maintaining the docs
 
 Please see [Maintaining GitHub Pages](GitHubPages.md) for more info.
 
