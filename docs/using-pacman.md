@@ -20,7 +20,7 @@ sudo pacman -Syu grep
 To update everything, including systemd-nspawn containers in `/var/lib/machines`, and purge the pacman cache afterwards, you could create an alias `update` as normal user as follows:
 
 ```bash
-tee -a ~/.bashrc > /dev/null <<EOF
+tee -a ~/.bashrc <<EOF
 alias update='sudo pacman -Syu; sudo sh -c "for d in /var/lib/machines/*/; do echo \$d; pacman -Syur \$d; done"; paccache -vrk 2'
 EOF
 ```

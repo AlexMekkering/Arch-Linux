@@ -14,15 +14,13 @@ timedatectl set-ntp yes
 ```bash
 tee -a /etc/locale.gen > /dev/null <<EOF
 en_US.UTF-8 UTF-8
-en_US ISO-8859-1
-nl_NL.UTF-8 UTF-8
-nl_NL ISO-8859-1
-nl_NL@euro ISO-8859-15
 EOF
 
 locale-gen
 localectl set-locale LANG=en_US.UTF-8
 ```
+
+> next to `en_US.UTF-8 UTF-8`, you can als install more locales like: `en_US ISO-8859-1`, `nl_NL.UTF-8 UTF-8`, `nl_NL ISO-8859-1` and `nl_NL@euro ISO-8859-15`
 
 ## Networking
 
@@ -37,7 +35,7 @@ hostnamectl set-hostname Arch
 For simple DHCP networking with `systemd-networkd`, do:
 
 ```bash
-tee -a /etc/systemd/network/physical.network > /dev/null <<EOF
+tee /etc/systemd/network/physical.network <<EOF
 [Match]
 Name=e*
 [Network]
@@ -76,7 +74,7 @@ When you'd like to use your own DNS server, you need to do the following:
 To my taste, LLMNR nterferes too much which single-lable lookups by DNS. To disable LLMNR in systemd-resolved, do the following:
 
 ```bash
-tee -a /etc/systemd/resolved.conf > /dev/null <<EOF
+tee -a /etc/systemd/resolved.conf <<EOF
 LLMNR=no
 EOF
 ```
@@ -90,7 +88,7 @@ According to <https://wiki.archlinux.org/index.php/systemd-networkd#systemd-reso
 When you trust your own DNS server, you can disable DNSSEC as follows:
 
 ```bash
-tee -a /etc/systemd/resolved.conf > /dev/null <<EOF
+tee -a /etc/systemd/resolved.conf <<EOF
 DNSSEC=no
 EOF
 ```

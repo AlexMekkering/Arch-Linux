@@ -23,7 +23,7 @@ pacstrap -icMGd $FOLDER systemd
 #### Add port mapping from host to container
 
 ```bash
-tee -a /etc/systemd/nspawn/$CONTAINER.nspawn > /dev/null <<EOF
+tee -a /etc/systemd/nspawn/$CONTAINER.nspawn <<EOF
 [Network]
 Port=<host port>:<container port>
 EOF
@@ -32,7 +32,7 @@ EOF
 #### Bind host folders in container
 
 ```bash
-tee -a /etc/systemd/nspawn/$CONTAINER.nspawn > /dev/null <<EOF
+tee -a /etc/systemd/nspawn/$CONTAINER.nspawn <<EOF
 [Files]
 Bind=<folder on host>:/mnt
 EOF
@@ -45,7 +45,7 @@ e.g. for making available `/dev/ttyUSB0` in the container:
 ##### Bind the device in container
 
 ```bash
-tee -a /etc/systemd/nspawn/$CONTAINER.nspawn > /dev/null <<EOF
+tee -a /etc/systemd/nspawn/$CONTAINER.nspawn <<EOF
 [Files]
 Bind=/dev/ttyUSB0
 EOF
@@ -66,8 +66,7 @@ Then determine the alias of its primary device number (in this case `188`) from 
 cat /proc/devices | grep 188
 # 188 ttyUSB
 
-tee -a /etc/systemd/system/systemd-nspawn@$CONTAINER.service.d/override.conf\
- > /dev/null <<EOF
+tee /etc/systemd/system/systemd-nspawn@$CONTAINER.service.d/override.conf <<EOF
 [Service]
 DeviceAllow=char-ttyUSB rwm
 EOF
@@ -168,7 +167,7 @@ To make the container privileged again, enable the `PrivateUsers=false` again in
 A container's packages can be updated by calling the following from the host:
 
 ``` bash
-pacman -Syur /var/lib/machines/<container>
+pacman -Syur /var/lib/machines/$CONTAINER
 ```
 
 ### Updating a container's keyring
@@ -179,7 +178,7 @@ pacman -Syur /var/lib/machines/<container>
 A container's keyring can be updated by:
 
 ```bash
-sudo machinectl shell <container> /usr/bin/pacman-key --populate archlinux
+sudo machinectl shell $CONTAINER /usr/bin/pacman-key --populate archlinux
 ```
 
 [install]: using-pacman.md#install-a-package

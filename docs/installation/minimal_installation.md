@@ -74,7 +74,7 @@ mount -o noatime $BOOT /mnt/boot
 ## Creating minimal environment
 
 ```bash
-pacstrap -c /mnt linux pacman sed
+pacstrap -c /mnt base linux
 genfstab -Up /mnt >> /mnt/etc/fstab
 ```
 
@@ -89,10 +89,10 @@ bootctl install --path=/mnt/boot
 ### Initialize bootloader configuration
 
 ```bash
-tee /mnt/boot/loader/loader.conf > /dev/null <<EOF
+tee /mnt/boot/loader/loader.conf <<EOF
 default        arch
 EOF
-tee /mnt/boot/loader/entries/arch.conf > /dev/null <<EOF
+tee /mnt/boot/loader/entries/arch.conf <<EOF
 title          Arch Linux
 linux          /vmlinuz-linux
 initrd         /initramfs-linux.img

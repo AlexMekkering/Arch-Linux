@@ -97,7 +97,7 @@ mount -o noatime $BOOT /mnt/boot
 ## Creating minimal environment
 
 ```bash
-pacstrap -c /mnt linux grub sed pacman btrfs-progs efibootmgr
+pacstrap -c /mnt base linux grub btrfs-progs efibootmgr
 genfstab -Up /mnt >> /mnt/etc/fstab
 ```
 
@@ -130,15 +130,13 @@ grub-install --recheck $DRIVE
 ### Initialize GRUB bootloader configuration
 
 ```bash
-sed -i 's\GRUB_CMDLINE_LINUX_DEFAULT="\&init=/usr/lib/systemd/systemd \'\
- /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
-exit
 ```
 
 ### Finalize
 
 ```bash
+exit
 reboot
 ```
 

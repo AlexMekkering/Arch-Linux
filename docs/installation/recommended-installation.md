@@ -34,25 +34,9 @@ useradd -m -G wheel <username>
 passwd <username>
 ```
 
-## Utilities for monitoring your system
-
-[Install] package [`procps-ng`] which includes `ps`, `top` and `uptime`.
-
-> For extended system and performance monitoring, you could [Install] package [`htop`] and/or [`sysstat`].
-
-## Additional network tools
-
-[Install] package [`iputils`] which includes i.e. `ping`.
-
 ## Reading manual pages
 
 [Install] packages [`man-db`] and [`man-pages`].
-
-## Additional archivers
-
-[Install] package [`tar`].
-> For much higher compression and decompression speed for tar (at the cost of some compression ratio), you could [Install] package [`lzop`].
-> [`gzip`], [`bzip2`], [`xz`] and [`lz4`] are already installed as dependencies of either [`linux`] or [`pacman`].
 
 ## Adding AUR package management with yaourt
 
@@ -105,19 +89,8 @@ Please also check [some more optimizations for a new installation].
 [`vi`]: https://www.archlinux.org/packages/core/x86_64/vi/
 [`nano`]: https://www.archlinux.org/packages/core/x86_64/nano/
 [`sudo`]: https://www.archlinux.org/packages/core/x86_64/sudo/
-[`procps-ng`]: https://www.archlinux.org/packages/core/x86_64/procps-ng/
-[`iputils`]: https://www.archlinux.org/packages/core/x86_64/iputils/
 [`man-db`]: https://www.archlinux.org/packages/core/x86_64/man-db/
 [`man-pages`]: https://www.archlinux.org/packages/core/x86_64/man-pages/
-[`tar`]: https://www.archlinux.org/packages/core/x86_64/tar/
-[`gzip`]: https://www.archlinux.org/packages/core/x86_64/gzip/
-[`bzip2`]: https://www.archlinux.org/packages/core/x86_64/bzip2/
-[`xz`]: https://www.archlinux.org/packages/core/x86_64/xz/
-[`lz4`]: https://www.archlinux.org/packages/core/x86_64/lz4/
 
-[`htop`]: https://www.archlinux.org/packages/extra/x86_64/htop/
 [`gvim`]: https://www.archlinux.org/packages/extra/x86_64/gvim/
 [`vim`]: https://www.archlinux.org/packages/extra/x86_64/vim/
-[`lzop`]: https://www.archlinux.org/packages/extra/x86_64/lzop/
-
-[`sysstat`]: https://www.archlinux.org/packages/community/x86_64/sysstat/
