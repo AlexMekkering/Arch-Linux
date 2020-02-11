@@ -26,3 +26,8 @@ EOF
 ```
 
 [partial upgrades]: https://wiki.archlinux.org/index.php/System_maintenance#Partial_upgrades_are_unsupported
+
+## Troubleshooting
+
+### Invalid or corrupted package
+`sudo rm /var/cache/pacman/pkg/*.part`
